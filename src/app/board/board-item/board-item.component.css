@@ -1,0 +1,29 @@
+main {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.boards-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+app-edit-board {
+    position: absolute;
+    margin: -300px 0px 0px -200px;
+}
+
+a.isDisabled {
+    pointer-events: none;
+  }
+
+
+
+
+

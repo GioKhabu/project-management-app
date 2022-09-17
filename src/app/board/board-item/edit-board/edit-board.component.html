@@ -1,0 +1,11 @@
+<div class="edit-board-name"
+*ngIf="editBoard">
+    <div class="editMode" >
+        <h3>Change Board Name</h3>
+        <input type="text" #inputEl1>
+        <div class="board-create-buttons">
+            <button (click)="onCancel()">Cancel</button>
+            <button (click)="onNewBoardName(inputEl1)">Update</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+
+
+.Board-Item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  height: 20em;
+  width: 20em;
+  background: grey;
+  border-radius: 10px;
+  transition: background 0.8s;
+  overflow: hidden;
+  background: rgb(126, 187, 236);
+  box-shadow: 0 70px 63px -60px #d4d0df;
+  margin: 50px;
+  text-decoration: none;
+}
+
+.Board-Item:hover {
+    background-color: rgb(33, 147, 240);
+}
+
+p {
+    margin-top: 20px;
+}
+
+.item-btns {
+    display: flex;
+    justify-content: space-between;
+    align-self: flex-end;
+    margin: 10px;
+}
+
+button {
+    margin: 10px;
+}
+
+
+

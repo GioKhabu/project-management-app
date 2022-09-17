@@ -1,10 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { BoardService } from './boards.service';
+
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'Project_Management_System';
+export class AppComponent implements OnInit {
+  loadedFeature: string[] = []
+
+
+  constructor(private boardService: BoardService) { }
+
+  ngOnInit(): void {
+    this.loadedFeature = this.boardService.pageload
+  }
+
+  // onNavigate(feature: string){
+  //   this.loadedFeature = feature
+  // }
+
+  // OnNavigate1(){
+  //   this.loadedFeature = this.boardService.boardPageLoad()
+  // }
+
+
 }

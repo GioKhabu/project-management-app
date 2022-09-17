@@ -1,0 +1,12 @@
+.developper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.about {
+    max-width: 350px;
+    text-align: center;
+}
