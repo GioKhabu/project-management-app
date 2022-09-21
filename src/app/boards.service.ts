@@ -1,66 +1,102 @@
-import { EventEmitter, Injectable } from "@angular/core";
-import { Board } from "./board/board.model";
+import { EventEmitter, Injectable } from '@angular/core';
+import { Board } from './board/board.model';
 import { HttpClient } from '@angular/common/http';
-import {map} from 'rxjs/operators'
+import { map, tap, filter } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
-
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class BoardService {
-    pageload: string [] = ['main']
-  loadedBoards: Board[] = []
+  pageload: string[] = ['main'];
+  boardId: string[] = [];
+  loadedBoards: Board[] = [];
+  singleBoard: Board[] = [];
+  boardsHttp: string =
+    'https://project-managment-af720-default-rtdb.europe-west1.firebasedatabase.app/boards.json';
+  deleteBoardsHTTP: string =
+    'https://project-managment-af720-default-rtdb.europe-west1.firebasedatabase.app/boards';
+  editBoard: boolean = true;
+  returnId() {
+    return this.boardId[0];
+  }
 
-    // editBoard: boolean = true
+  saveID() {
+    localStorage.setItem('saveID', JSON.stringify(this.boardId));
+  }
 
-    items: Board[] = [
-        {name: 'project1'},
-        {name: 'project2'},
-        {name: 'project3'},
-          ]
+  getIds() {
+    const ids = localStorage.getItem('saveID');
+    if (ids) {
+      this.boardId = JSON.parse(ids);
+    }
+    return this.boardId;
+  }
 
-          constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
+  private _refreshNeeded$ = new Subject<void>();
 
+  get refreshNeeded$() {
+    return this._refreshNeeded$;
+  }
 
-          // onNewBoard(inputEl: string) {
-          //    this.items.unshift({name: inputEl})
-          // }
+  onNewBoard(name: string) {
+    const postData: Board = { name: name };
+    this.http
+      .post<{ name: string }>(this.boardsHttp, postData)
+      .pipe(
+        tap(() => {
+          this._refreshNeeded$.next();
+        })
+      )
+      .subscribe((responseData) => {
+        console.log(responseData);
+      });
+  }
 
-          onNewBoard(name: string) {
-            const postData: Board = {name: name}
-            this.http.post<{name:string}>('https://project-managment-af720-default-rtdb.europe-west1.firebasedatabase.app/boards.json', 
-      postData).subscribe(responseData => {
-        console.log(responseData)
-       })
-         }
+  patchData(name: string, key: string) {
+    const postData: Board = { name: name };
+    this.http
+      .patch<{ name: string }>(`${this.deleteBoardsHTTP}/${key}.json`, postData)
+      .pipe(
+        tap(() => {
+          this._refreshNeeded$.next();
+        })
+      )
+      .subscribe((responseData) => {
+        console.log(responseData);
+      });
+  }
 
-         fetchBoards () {
-          return this.http
-          .get<{[key:string]: Board}>('https://project-managment-af720-default-rtdb.europe-west1.firebasedatabase.app/boards.json')
-          .pipe(map(responseData => {
-            const postArray: Board[] =[]
-            for (const key in responseData) {
-              if (responseData.hasOwnProperty(key)) {
-                postArray.push({...responseData[key], id: key})
-              }
-            }
-            return postArray;
-          }))
-         }
-
-          deleteBoard(index: number) {
-            this.items.splice(index, 1)
-            console.log(index)
+  fetchBoards() {
+    return this.http.get<{ [key: string]: Board }>(this.boardsHttp).pipe(
+      map((responseData) => {
+        const postArray: Board[] = [];
+        for (const key in responseData) {
+          if (responseData.hasOwnProperty(key)) {
+            postArray.push({ ...responseData[key], id: key });
           }
+        }
+        return postArray;
+      })
+    );
+  }
 
-          boardNewName(inputEl: string, index:number){
-            this.items[index].name =  inputEl
-          }
+  fetchSingleBoard(key: string) {
+    return this.http.get(`${this.deleteBoardsHTTP}/${key}.json`);
+  }
 
-          boardPageLoad(feature: string){
-            this.pageload[0] = feature
-          }
+  deleteBoards(key: string) {
+    return this.http.delete(`${this.deleteBoardsHTTP}/${key}.json`).pipe(
+      tap(() => {
+        this._refreshNeeded$.next();
+      })
+    );
+  }
 
-          updateBoardname = new EventEmitter<boolean>()
-          passBoardIndex = new EventEmitter<number>()
-         
+  boardPageLoad(feature: string) {
+    this.pageload[0] = feature;
+  }
+
+  updateBoardname = new EventEmitter<boolean>();
+  passBoardIndex = new EventEmitter<string>();
 }

@@ -9,24 +9,30 @@ import { BoardService } from 'src/app/boards.service';
 export class EditBoardComponent implements OnInit {
 
   editBoard: boolean
-  itemIndex: number
+  itemIndex: string
 
   constructor(private boardService: BoardService) {
     this.boardService.updateBoardname.subscribe(
       (editBoardVal: boolean) => this.editBoard = editBoardVal
     )
     this.boardService.passBoardIndex.subscribe(
-      (id: number) => this.itemIndex = id
+      (id: string) => this.itemIndex = id
     )
    }
 
   ngOnInit(): void {
   }
   
+  // onNewBoardName(inputEl1: HTMLInputElement){
+  //   if (inputEl1.value !== ''){
+  //     this.boardService.boardNewName(inputEl1.value, this.itemIndex)
+  //   }
+  // }
+
   onNewBoardName(inputEl1: HTMLInputElement){
-    if (inputEl1.value !== ''){
-      this.boardService.boardNewName(inputEl1.value, this.itemIndex)
-    }
+    this.boardService.patchData(inputEl1.value, this.itemIndex)
+    console.log(this.itemIndex)
+    console.log(inputEl1.value)
   }
 
   onCancel(){

@@ -1,0 +1,11 @@
+<div class="edit-board-name"
+*ngIf="editColumn">
+    <div class="editMode" >
+        <h3>Change Column Name</h3>
+        <input type="text" #inputEl1>
+        <div class="board-create-buttons">
+            <button (click)="onCancel()">Cancel</button>
+            <button (click)="onNewColumnName(inputEl1)">Update</button>
+        </div>
+    </div>
+</div>

@@ -10,29 +10,30 @@ import { Board } from '../../board.model';
 export class BoardListItemComponent implements OnInit {
  @Input() boards: Board
  @Input() itemIndex: number
- editBoard: false
-  constructor(private boardService: BoardService) { }
 
+
+  constructor(private boardService: BoardService) { }
   ngOnInit(): void {
   }
 
+  onDeleteBoard(event: any) {
+    event.preventDefault()
+    event.stopPropagation()
+    this.boardService.deleteBoards(this.boards.id).subscribe(() => {
+    })
+  }
 
-
-
-    onDeleteBoard(event: any) {
-      event.preventDefault()
-      event.stopPropagation()
-      this.boardService.deleteBoard(this.itemIndex)
-    }
-
-    onEditBoard(event: any) {
+  onEditBoard(event: any) {
       event.preventDefault()
       event.stopPropagation()
       this.boardService.updateBoardname.emit(true)
-      this.boardService.passBoardIndex.emit(this.itemIndex)
+      this.boardService.passBoardIndex.emit(this.boards.id)
+      
     }
 
     onSelect(feature: string) {
+      this.boardService.boardId[0] = this.boards.id
+      this.boardService.saveID()
       this.boardService.boardPageLoad(feature)
     }
 

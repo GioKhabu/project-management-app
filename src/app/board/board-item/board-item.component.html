@@ -1,16 +1,11 @@
 <main>
     <div class="boards-container">
-        
         <app-board-list-item 
         *ngFor="let item of loadedBoards; let i = index" 
         [boards] = "item"
         [itemIndex]="i"></app-board-list-item>
         <app-edit-board></app-edit-board>
         <app-add-new-board></app-add-new-board>
-    </div>
-    
-    
-
-    
+    </div>    
 </main>
 

@@ -1,0 +1,27 @@
+.board-header container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+h2 {
+    align-self: flex-start;
+    display: inline;
+    margin: 20px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    background: #dc3545;
+    padding: 7px 10px;
+    border-radius: 4px;  
+    font-size: 19px;
+}
+a:hover{
+    background: rgb(220 53 69 / 85%);
+}
+a:focus{
+    outline: 3px solid rgb(220 53 69 / 50%);
+}

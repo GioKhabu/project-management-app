@@ -1,0 +1,15 @@
+<form  class="add-new-task" 
+#postForm="ngForm" (ngSubmit)="onNewColumn(postForm.value)"
+*ngIf="editTask">
+    <div class="editMode" >
+        <h3>Change Board Name</h3>
+        <label for="">Name</label>
+        <input type="text" ngModel name="name">>
+        <label for="">Description</label>
+        <input type="text" ngModel name="description">
+        <div class="board-create-buttons">
+            <button (click)="onCancel()">Cancel</button>
+            <button type="submit">Update</button>
+        </div>
+    </div>
+</form>

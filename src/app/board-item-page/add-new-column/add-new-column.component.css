@@ -1,0 +1,42 @@
+.add-column-container {
+    width: 320px;
+    height: 150px;
+    margin-left: 20px;
+}
+
+.add-new-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    border: 2px dashed #9698a3;
+    background: none;
+    color: #9698a3;
+    font-size: .9em;
+    cursor: pointer;
+    transition: all .15s linear;
+}
+
+.editMode {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    border: 2px dashed #9698a3;
+    background: none;
+    color: #9698a3;
+    font-size: .9em;
+    cursor: pointer;
+    transition: all .15s linear;
+}
+
+button {
+    margin: 15px;
+    width: 70px;
+    height: 35px;
+}

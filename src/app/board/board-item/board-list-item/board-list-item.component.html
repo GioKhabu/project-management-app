@@ -1,17 +1,17 @@
 <a 
         class="Board-Item" 
         style="cursor: pointer;" 
-        (click)="onSelect('boardsItem')"
+        (click)="onSelect($event)"
         routerLink="boardsItem" 
-        
         onclick="return false;">
             <div class="wraper">
                 <p class="board-name">{{boards.name}}</p>
+                <p class="board-name">{{boards.id}}</p>
                 <div class="item-btns">
                     <button class="btn btn-primary edit" 
                     (click)="onEditBoard($event)"
                     >edit</button>
-                    <button class="btn btn-danger delete" (click)="onDeleteBoard($event)" id="{{itemIndex}}" >delete</button>
+                    <button class="btn btn-danger delete" (click)="onDeleteBoard($event)" >delete</button>
                 </div>
             </div>
         </a>

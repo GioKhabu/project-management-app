@@ -1,0 +1,22 @@
+<form class="add-column-container" 
+#postForm="ngForm" (ngSubmit)="onNewColumn(postForm.value)">
+    <a href="#" 
+    class="add-new-column" 
+    style="cursor: pointer;" 
+    (click)="onEdit()"
+    *ngIf="addBoard"
+    onclick="return false;"
+    >
+        <div class="wraper">
+            <p class="add-board"> Add new column</p>
+        </div>
+    </a>
+    <div class="editMode" *ngIf="!addBoard">
+        <h3>Create new column</h3>
+        <input type="text" ngModel name="name">
+        <div class="board-create-buttons">
+            <button class="btn btn-danger" (click)="onCancel(inputEl)">Cancel</button>
+            <button class="btn btn-primary" type="submit">Create</button>
+        </div>
+    </div>
+</form>

@@ -31,7 +31,6 @@ export class AddNewBoardComponent implements OnInit {
 
   onCancel(){
     this.addBoard = true
-    // inputEl.value =''
   }
   onNewBoard(postData: Board) {
     if (postData.name !== ''){
@@ -49,10 +48,6 @@ export class AddNewBoardComponent implements OnInit {
   //   }
   }
 
-
-  private fetchPosts() {
-  
-  }
 
 
 }

@@ -1,0 +1,39 @@
+.Board-Item {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+}
+
+.column-area {
+  display: flex;
+  position: relative;
+}
+
+.column-container {
+  display: flex;
+}
+
+.boards-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+app-edit-column {
+  position: absolute;
+  margin: 100px 0px 0px 500px;
+}
+
+app-add-new-task {
+  position: absolute;
+  margin: 100px 0px 0px 500px;
+}
+
+app-edit-tasks {
+  position: absolute;
+  margin: 100px 0px 0px 500px;
+}

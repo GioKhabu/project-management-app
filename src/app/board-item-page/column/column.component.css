@@ -1,0 +1,16 @@
+.column-item {
+    height: 100vh;
+    margin: 10px 20px 10px 30px;
+    padding: 20px;
+    border: 1.5px solid black;
+    border-radius: 10px;
+
+}
+
+.column-edit {
+    display: flex;
+}
+
+button {
+    margin: 10px;
+}

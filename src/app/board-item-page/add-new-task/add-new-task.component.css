@@ -1,11 +1,11 @@
-.edit-board-name {
+.add-new-task {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     align-self: flex-start;
     position: absolute;
-  height: 20em;
+  height: 25em;
   width: 20em;
   background: grey;
   border-radius: 10px;
@@ -29,4 +29,8 @@ h3  {
 
 button {
     margin: 30px 10px 0px 10px;
+}
+
+label {
+    color: aliceblue;
 }

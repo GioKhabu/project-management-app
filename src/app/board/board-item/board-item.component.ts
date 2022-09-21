@@ -10,27 +10,27 @@ import { Board } from '../board.model';
 export class BoardItemComponent implements OnInit {
   
   // boards: Board[]
-  @Input() itemIndex: number
+  // @Input() itemIndex: number
   loadedBoards: Board[] = []
-
-
-
-  
 
   constructor(private boardService: BoardService) { }
 
 
   ngOnInit(): void {
+    this.boardService.refreshNeeded$.subscribe(() => {
+this.getAllBoards()
+    })
+this.getAllBoards()
+
+  }
+
+  private getAllBoards() {
     this.boardService.fetchBoards().subscribe(
       posts => {
         this.loadedBoards = posts
+        console.log(posts)
       }
     )
   }
-
-
-
-
-
     
 }
