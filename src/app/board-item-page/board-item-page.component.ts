@@ -46,6 +46,7 @@ export class BoardItemPageComponent implements OnInit {
       });
     });
   }
+  
 
   drop(event: CdkDragDrop<Column[]>) {
     

@@ -1,21 +1,34 @@
-<div class="Board-Item" *ngFor="let item of singleBoard; let i = index" 
-[itemIndex]="i">
-<div class="header">
-    <app-board-header [board] = "item"></app-board-header>
-</div>
-<div class="column-area" cdkDropListGroup>
-    <div class="column-container" 
-    cdkDropList
-     (cdkDropListDropped)="drop($event)"
-     [cdkDropListData]="loadedcolumns"
-     >
-        <app-column *ngFor="let item1 of loadedColumns; let i = index" 
-        [itemIndex]="i" [column]="item1" cdkDrag></app-column>
+<div
+  class="Board-Item"
+  *ngFor="let item of singleBoard; let i = index"
+  [itemIndex]="i"
+>
+  <div class="header">
+    <app-board-header [board]="item"></app-board-header>
+  </div>
+  <div class="column-area" cdkDropListGroup>
+    <div cdkDropListGroup>
+      <div
+        class="column-container"
+        cdkDropList
+        cdkDropListOrientation="horizontal"
+        (cdkDropListDropped)="drop($event)"
+        [cdkDropListData]="loadedcolumns"
+        
+      >
+        <app-column
+          *ngFor="let item1 of loadedColumns; let i = index"
+          [itemIndex]="i"
+          [column]="item1"
+          cdkDrag
+        >
+          <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+        </app-column>
+      </div>
     </div>
     <app-add-new-column></app-add-new-column>
     <app-edit-column></app-edit-column>
     <app-add-new-task></app-add-new-task>
     <app-edit-tasks></app-edit-tasks>
-</div>
-
+  </div>
 </div>

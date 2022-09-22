@@ -3,6 +3,7 @@
     border: 1.5px solid rgb(129, 2, 2);
     padding: 5px;
     border-radius: 5px;
+    background-color: white;
 }
 
 .name-delete-container {

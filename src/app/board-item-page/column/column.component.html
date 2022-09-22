@@ -1,6 +1,9 @@
-<div class="column-item">
+<div class="column-item"     cdkDropList
+    (cdkDropListDropped)="drop1($event)"
+    [cdkDropListData]="loadedTasks"
+>
   <div class="column-edit">
-    <h4>
+    <h4 >
       {{ column.name }}{{ "column-" + column.id
       }}{{ "board-" + column.boardID }}
     </h4>
@@ -27,8 +30,17 @@
   <div class="item-btns">
     <button (click)="addNewTask($event)">Add Task</button>
   </div>
-    
-  <div *ngFor="let item of loadedTasks; let i = index" [task]="item">
-    <app-tasks *ngIf="item.columnID === column.id"  [itemIndex]="i" [task]="item"></app-tasks>
+
+  <div
+    *ngFor="let item of loadedTasks; let i = index"
+    [task]="item"
+cdkDrag
+  >
+    <app-tasks
+      *ngIf="item.columnID === column.id"
+      [itemIndex]="i"
+      [task]="item"
+      
+    ></app-tasks>
   </div>
 </div>

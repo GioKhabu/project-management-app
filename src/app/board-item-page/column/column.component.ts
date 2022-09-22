@@ -1,4 +1,7 @@
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
+// import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+
 import { Board } from 'src/app/board/board.model';
 import { BoardService } from 'src/app/boards.service';
 import { ColumnsService } from 'src/app/columns.services';
@@ -16,11 +19,10 @@ export class ColumnComponent implements OnInit {
   @Input() column: Column;
   @Input() board: Board;
   @Input() itemIndex: number;
+  @Input() loadedColumn: Column[]
   loadedTasks: Task[] = [];
   boardID: string[] = [];
-  show:boolean
-  
-  
+  show: boolean;
 
   constructor(
     private boardService: BoardService,
@@ -32,10 +34,10 @@ export class ColumnComponent implements OnInit {
   ngOnInit(): void {
     this.boardID = this.boardService.getIds();
     this.singleBoard = this.boardService.singleBoard;
-        this.tasksService.refreshNeeded$.subscribe(() => {
-          this.getAllTasks();
-        });
-    this.getAllTasks()
+    this.tasksService.refreshNeeded$.subscribe(() => {
+      this.getAllTasks();
+    });
+    this.getAllTasks();
   }
   onDeleteColumn(event: any) {
     event.preventDefault();
@@ -50,13 +52,13 @@ export class ColumnComponent implements OnInit {
   }
 
   addNewTask(event: any) {
-    event.preventDefault();
-    event.stopPropagation();
+    // event.preventDefault();
+    // event.stopPropagation();
 
     this.tasksService.updateTaskName.emit(true);
     this.tasksService.passBoardIndex.emit(this.column.boardID);
     this.tasksService.passColumnIndex.emit(this.column.id);
-    
+
     console.log('column-' + this.column.id);
     console.log('board-' + this.column.boardID);
   }
@@ -73,5 +75,28 @@ export class ColumnComponent implements OnInit {
     });
   }
 
+  // drop1(event: CdkDragDrop<Task[]>) {
+  //   moveItemInArray(this.loadedTasks, event.previousIndex, event.currentIndex);
+  //   console.log(event);
+  // }
 
+
+  drop1(event: CdkDragDrop<Task[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
+    console.log(event);
+    
+  }
 }

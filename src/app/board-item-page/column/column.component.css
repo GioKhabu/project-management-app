@@ -1,9 +1,12 @@
 .column-item {
-    height: 100vh;
+    min-height: 80vh;
+    max-width: 330px;
     margin: 10px 20px 10px 30px;
     padding: 20px;
     border: 1.5px solid black;
     border-radius: 10px;
+    background-color: aliceblue;
+      cursor: move;
 
 }
 
@@ -14,3 +17,10 @@
 button {
     margin: 10px;
 }
+
+h4 {
+    z-index: 3;
+    cursor:default;
+}
+
+
