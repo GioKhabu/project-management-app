@@ -18,13 +18,4 @@ export class AppComponent implements OnInit {
     this.loadedFeature = this.boardService.pageload
   }
 
-  // onNavigate(feature: string){
-  //   this.loadedFeature = feature
-  // }
-
-  // OnNavigate1(){
-  //   this.loadedFeature = this.boardService.boardPageLoad()
-  // }
-
-
 }

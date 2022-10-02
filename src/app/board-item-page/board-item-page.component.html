@@ -7,28 +7,33 @@
     <app-board-header [board]="item"></app-board-header>
   </div>
   <div class="column-area" cdkDropListGroup>
-    <div cdkDropListGroup>
-      <div
-        class="column-container"
-        cdkDropList
-        cdkDropListOrientation="horizontal"
-        (cdkDropListDropped)="drop($event)"
-        [cdkDropListData]="loadedcolumns"
-        
+        <cdk-virtual-scroll-viewport itemSize="5" orientation="horizontal" class="viewPort">
+        <div
+      class="column-container"
+      cdkDropList
+      [cdkDropListData]="loadedColumns"
+      cdkDropListOrientation="horizontal"
+      (cdkDropListDropped)="drop($event)"
+    >
+
+      <app-column
+        class="app-column"
+        *ngFor="let item1 of loadedColumns; let i = index"
+        [itemIndex1]="i"
+        [column]="item1"
+        id="item1.id"
+        cdkDrag
+        (passTasks)="passTasks($event)"
       >
-        <app-column
-          *ngFor="let item1 of loadedColumns; let i = index"
-          [itemIndex]="i"
-          [column]="item1"
-          cdkDrag
-        >
-          <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-        </app-column>
-      </div>
-    </div>
+        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+      </app-column>
     <app-add-new-column></app-add-new-column>
-    <app-edit-column></app-edit-column>
-    <app-add-new-task></app-add-new-task>
-    <app-edit-tasks></app-edit-tasks>
+
+    </div>
+
+    </cdk-virtual-scroll-viewport>
+    
+    <!-- <app-add-new-task></app-add-new-task> -->
+    <!-- <app-edit-tasks></app-edit-tasks> -->
   </div>
 </div>

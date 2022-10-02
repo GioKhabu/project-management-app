@@ -23,16 +23,8 @@ export class EditBoardComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  // onNewBoardName(inputEl1: HTMLInputElement){
-  //   if (inputEl1.value !== ''){
-  //     this.boardService.boardNewName(inputEl1.value, this.itemIndex)
-  //   }
-  // }
-
   onNewBoardName(inputEl1: HTMLInputElement){
     this.boardService.patchData(inputEl1.value, this.itemIndex)
-    console.log(this.itemIndex)
-    console.log(inputEl1.value)
   }
 
   onCancel(){

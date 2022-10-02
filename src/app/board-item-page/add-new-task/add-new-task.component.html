@@ -1,15 +1,17 @@
-<form  class="add-new-task" 
-#postForm="ngForm" (ngSubmit)="onNewColumn(postForm.value)"
-*ngIf="editTask">
-    <div class="editMode" >
-        <h3>Change Board Name</h3>
-        <label for="">Name</label>
-        <input type="text" ngModel name="name">>
-        <label for="">Description</label>
-        <input type="text" ngModel name="description">
-        <div class="board-create-buttons">
-            <button (click)="onCancel()">Cancel</button>
-            <button type="submit">Update</button>
-        </div>
-    </div>
+<form [formGroup]="taskForm" 
+class="add-new-task"
+#postForm="ngForm"
+(ngSubmit)="onNewColumn(postForm.value)">
+  <mat-form-field >
+    <label for="">Name</label>
+    <input formControlName="name" matInput   type="text" />
+  </mat-form-field>
+  <mat-form-field>
+    <label for="">Description</label>
+    <input formControlName="description" matInput   type="text" />
+  </mat-form-field>
+  <div mat-dialog-actions class="board-create-buttons">
+    <button mat-dialog-close >Cancel</button>
+    <button type="submit" mat-dialog-close>Add</button>
+  </div>
 </form>

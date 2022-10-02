@@ -1,9 +1,11 @@
 <div class="tasks-container">
-    <div class="name-delete-container">
-        <h3>{{task.name}}</h3>
-        <button (click)="onDeleteTask($event)">delete</button>
-        <button (click)="onEditColumn($event)">edit</button>
+  <div class="name-delete-container">
+    <h3>{{ task.name }}</h3>
+    <div class="buttons-group">
+      <button (click)="onDeleteTaskClick($event)">delete</button>
+      <button (click)="onEditTask($event)">edit</button>
     </div>
-    <hr>
-    <p>{{task.description}}</p>
+  </div>
+  <hr />
+  <p>{{ task.description }}</p>
 </div>

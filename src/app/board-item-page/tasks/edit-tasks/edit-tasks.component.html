@@ -1,0 +1,17 @@
+<form [formGroup]="taskForm" 
+class="add-new-task"
+#postForm="ngForm"
+(ngSubmit)="onEditTask()">
+  <mat-form-field >
+    <mat-label for="">Name</mat-label>
+    <input formControlName="name" matInput   type="text" placeholder="{{this.task.name}}" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label for="">Description</mat-label>
+    <input formControlName="description" matInput   type="text" placeholder="{{this.task.description}}"/>
+  </mat-form-field>
+  <div mat-dialog-actions class="board-create-buttons">
+    <button mat-dialog-close>Cancel</button>
+    <button type="submit" mat-dialog-close>Add</button>
+  </div>
+</form>

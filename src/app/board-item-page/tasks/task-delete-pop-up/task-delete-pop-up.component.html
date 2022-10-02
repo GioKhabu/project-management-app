@@ -1,0 +1,10 @@
+<div class="column-delete-window" >
+    <h4>Do you want to delete this task? <br>
+        Task: <strong>{{name}}?</strong> </h4>
+    <div>
+    <mat-dialog-actions>
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button (click)="onDeleteTask($event)" cdkFocusInitial mat-dialog-close>Delete</button>
+    </mat-dialog-actions>
+    </div>
+</div>

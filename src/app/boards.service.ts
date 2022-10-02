@@ -49,7 +49,6 @@ export class BoardService {
         })
       )
       .subscribe((responseData) => {
-        console.log(responseData);
       });
   }
 
@@ -63,7 +62,6 @@ export class BoardService {
         })
       )
       .subscribe((responseData) => {
-        console.log(responseData);
       });
   }
 

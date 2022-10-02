@@ -1,10 +1,15 @@
 .Board-Item {
   display: flex;
+  position: relative;
   flex-direction: column;
+  justify-content: flex-start;
+  min-height: 77vh;
+  max-height: 77vh;
 }
 
 .header {
   display: flex;
+  position: relative;
 }
 
 .column-area {
@@ -13,24 +18,25 @@
 }
 
 .column-container {
+  position: relative;
   display: flex;
 }
 
 .boards-container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
 
-
-
-
+.app-column {
+  position: relative;
+}
 
 app-edit-column {
   position: absolute;
   margin: 100px 0px 0px 500px;
-
 }
 
 app-add-new-task {
@@ -43,29 +49,11 @@ app-edit-tasks {
   margin: 100px 0px 0px 500px;
 }
 
-/* .cdk-drag-preview {
-  box-sizing: border-box;
-  border-radius: 4px;
-  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-              0 8px 10px 1px rgba(0, 0, 0, 0.14),
-              0 3px 14px 2px rgba(0, 0, 0, 0.12);
-}
-
-.cdk-drag-placeholder {
-  opacity: 0;
-}
-
-.cdk-drag-animating {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-} */
-
-
 .cdk-drag-preview {
   box-sizing: border-box;
   border-radius: 4px;
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-              0 8px 10px 1px rgba(0, 0, 0, 0.14),
-              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
 
 .cdk-drag-animating {
@@ -76,7 +64,8 @@ app-edit-tasks {
   border: none;
 }
 
-.column-container.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+.column-container.cdk-drop-list-dragging
+  .example-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
@@ -87,4 +76,16 @@ app-edit-tasks {
   min-width: 320px;
   border-radius: 10px;
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.viewPort {
+    display: flex;
+    flex-direction: row;
+    width: 90vw;
+    height: 75vh;
+}
+
+.viewPort .cdk-virtual-scroll-content-wrapper {
+  display: flex;
+  flex-direction: row;
 }

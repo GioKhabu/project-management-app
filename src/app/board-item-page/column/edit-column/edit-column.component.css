@@ -4,15 +4,12 @@
     justify-content: space-between;
     align-items: center;
     align-self: flex-start;
-    position: absolute;
-  height: 20em;
-  width: 20em;
-  background: grey;
-  border-radius: 10px;
+    /* position: absolute; */
+
+
   transition: background 0.8s;
   overflow: hidden;
-  background: rgb(35, 56, 73);
-  box-shadow: 0 70px 63px -60px #d4d0df;
+  background: none;
   margin: 0px;
 }
 
@@ -20,13 +17,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 30px;
 }
 
-h3  {
-    color: aliceblue;
+input {
+      overflow-wrap: break-word;
+    word-wrap: break-word;
+  hyphens: auto;
 }
+
+
 
 button {
-    margin: 30px 10px 0px 10px;
+    margin: 10px 10px 0px 5px;
 }

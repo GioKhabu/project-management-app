@@ -61,7 +61,6 @@ export class TasksService {
         })
       )
       .subscribe((responseData) => {
-        console.log(responseData);
       });
   }
 
@@ -87,7 +86,7 @@ export class TasksService {
     );
   }
 
-  patchData(name: string, description:string, key: string) {
+  patchData(name: string, description: string, key: string) {
     const postData: Task = { name: name, description: description };
     this.http
       .patch<{ name: string; description: string }>(
@@ -100,13 +99,15 @@ export class TasksService {
         })
       )
       .subscribe((responseData) => {
-        console.log(responseData);
       });
   }
 
   updateTaskName = new EventEmitter<boolean>();
+  passTasks = new EventEmitter<boolean>();
+
   updateTask = new EventEmitter<boolean>();
   passBoardIndex = new EventEmitter<string>();
   passColumnIndex = new EventEmitter<string>();
   passTaskIndex = new EventEmitter<string>();
+  passTasksInfo = new EventEmitter<Task>()
 }

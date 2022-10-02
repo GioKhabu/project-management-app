@@ -5,8 +5,8 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-  height: 20em;
-  width: 20em;
+  height: 17em;
+  width: 17em;
   background: grey;
   border-radius: 10px;
   transition: background 0.8s;
@@ -17,12 +17,20 @@
   text-decoration: none;
 }
 
-.Board-Item:hover {
-    background-color: rgb(33, 147, 240);
+.wraper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
-p {
+.Board-Item:hover {
+    background-color: rgb(65, 164, 245);
+}
+
+h3 {
     margin-top: 20px;
+    color: white;
 }
 
 .item-btns {

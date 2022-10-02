@@ -50,7 +50,6 @@ export class ColumnsService {
         })
       )
       .subscribe((responseData) => {
-        console.log(responseData);
       });
   }
 
@@ -86,7 +85,6 @@ export class ColumnsService {
         })
       )
       .subscribe((responseData) => {
-        console.log(responseData);
       });
   }
 

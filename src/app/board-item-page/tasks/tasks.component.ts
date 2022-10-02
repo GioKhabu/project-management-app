@@ -1,6 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TasksService } from 'src/app/tasks.service';
 import { Task } from '../task.model';
+import { MatDialog } from '@angular/material/dialog';
+import { TaskDeletePopUpComponent } from './task-delete-pop-up/task-delete-pop-up.component';
+import { EditTasksComponent } from './edit-tasks/edit-tasks.component';
+
 
 
 @Component({
@@ -11,21 +15,41 @@ import { Task } from '../task.model';
 export class TasksComponent implements OnInit {
   @Input() task: Task;
 
-  constructor(private tasksService: TasksService) {}
+  constructor(
+    private tasksService: TasksService,
+    private dialogRef: MatDialog
+  ) {}
 
   ngOnInit(): void {}
 
-  onDeleteTask(event: any) {
+  onDeleteTaskClick(event: any) {
     event.preventDefault();
     event.stopPropagation();
-    this.tasksService.deleteTask(this.task.id).subscribe(() => {});
+    this.dialogRef.open(TaskDeletePopUpComponent, {
+      width: '280px',
+      height: '150px',
+      panelClass: 'my-css-class',
+      data: {
+        id: this.task.id,
+        name: this.task.name,
+      },
+    });
   }
 
-  onEditColumn(event: any) {
+  onEditTask(event: any) {
     event.preventDefault();
     event.stopPropagation();
-    // this.tasksService.updateTaskName.emit(true);
+    this.dialogRef.open(EditTasksComponent, {
+      width: '280px',
+      height: '150px',
+      panelClass: 'my-css-class',
+      data: {
+        id: this.task.id,
+        name: this.task.name,
+      },
+    });
     this.tasksService.passTaskIndex.emit(this.task.id);
-    this.tasksService.updateTask.emit(true)
+    this.tasksService.updateTask.emit(true);
+    this.tasksService.passTasksInfo.emit(this.task)
   }
 }

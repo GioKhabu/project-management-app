@@ -1,0 +1,13 @@
+.column-delete-window {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(90, 169, 235);
+}
+
+button {
+    margin: 10px;
+}

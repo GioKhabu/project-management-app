@@ -37,15 +37,6 @@ export class AddNewBoardComponent implements OnInit {
       this.boardService.onNewBoard(postData.name)
     }
 
-    // if (inputEl.value !== '') {
-    //   this.boardService.onNewBoard(inputEl.value)
-    //   inputEl.value =''
-    // }
-  // onNewBoard(inputEl: HTMLInputElement) {
-  //   if (inputEl.value !== '') {
-  //     this.boardService.onNewBoard(inputEl.value)
-  //     inputEl.value =''
-  //   }
   }
 
 

@@ -1,8 +1,9 @@
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, Input, OnInit } from '@angular/core';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Board } from '../board/board.model';
 import { BoardService } from '../boards.service';
 import { ColumnsService } from '../columns.services';
+import { TasksService } from '../tasks.service';
 import { Column } from './column.model';
 
 @Component({
@@ -14,12 +15,27 @@ export class BoardItemPageComponent implements OnInit {
   singleBoard: any = [];
   loadedColumns: Column[] = [];
   boardID: string[] = [];
+  loadedTasks: Task[];
 
   constructor(
     private boardService: BoardService,
-    private columnsService: ColumnsService
+    private columnsService: ColumnsService,
+    private tasksService: TasksService,
+    private cd: ChangeDetectorRef
   ) {}
 
+  wait(ms: number) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+  }
+
+  async passTasks(data: Task[]) {
+    await this.wait(200);
+
+    this.loadedTasks = data;
+    await this.wait(200);
+  }
   ngOnInit(): void {
     this.boardID = this.boardService.getIds();
     this.columnsService.refreshNeeded$.subscribe(() => {
@@ -42,19 +58,36 @@ export class BoardItemPageComponent implements OnInit {
       posts.filter((posta) => {
         if (posta.boardID === this.boardID[0]) {
           this.loadedColumns.push(posta);
+          this.loadedColumns = [...this.loadedColumns]
         }
       });
     });
   }
-  
 
   drop(event: CdkDragDrop<Column[]>) {
-    
-    moveItemInArray(this.loadedColumns, event.previousIndex, event.currentIndex);
-    console.log(event)
+    moveItemInArray(
+      this.loadedColumns,
+      event.previousIndex,
+      event.currentIndex
+    );
   }
 
-  // drop(event: CdkDragDrop<Column[]>) {
-  //   console.log(event)
-  // }
+  drop1(event: CdkDragDrop<Task[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
+  }
+
+
 }
