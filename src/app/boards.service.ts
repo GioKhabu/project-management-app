@@ -49,8 +49,7 @@ export class BoardService {
           this._refreshNeeded$.next();
         })
       )
-      .subscribe((responseData) => {
-      });
+      .subscribe((responseData) => {});
   }
 
   patchData(name: string, key: string) {
@@ -62,30 +61,41 @@ export class BoardService {
           this._refreshNeeded$.next();
         })
       )
-      .subscribe((responseData) => {
-      });
+      .subscribe((responseData) => {});
   }
 
-  fetchBoards() {
-    return this.authService.user
-      .pipe(
-        take(1),
-        exhaustMap((user) => {
-          return this.http.get<{ [key: string]: Board }>(this.boardsHttp, {
-            params: new HttpParams().set('auth', user.token)
-          });
-        }),
-        map((responseData) => {
-          const postArray: Board[] = [];
-          for (const key in responseData) {
-            if (responseData.hasOwnProperty(key)) {
-              postArray.push({ ...responseData[key], id: key });
-            }
-          }
-          return postArray;
-        })
-      )
 
+  fetchBoards() {
+
+        return this.http.get<{ [key: string]: Board }>(this.boardsHttp).pipe(
+          map((responseData) => {
+            const postArray: Board[] = [];
+            for (const key in responseData) {
+              if (responseData.hasOwnProperty(key)) {
+                postArray.push({ ...responseData[key], id: key });
+              }
+            }
+            return postArray;
+          })
+        );
+
+    // return this.authService.user.pipe(
+    //   take(1),
+    //   exhaustMap((user) => {
+    //     return this.http.get<{ [key: string]: Board }>(this.boardsHttp, {
+    //       params: new HttpParams().set('auth', user.token),
+    //     });
+    //   }),
+    //   map((responseData) => {
+    //     const postArray: Board[] = [];
+    //     for (const key in responseData) {
+    //       if (responseData.hasOwnProperty(key)) {
+    //         postArray.push({ ...responseData[key], id: key });
+    //       }
+    //     }
+    //     return postArray;
+    //   })
+    // );
   }
 
   fetchSingleBoard(key: string) {

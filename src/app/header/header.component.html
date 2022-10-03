@@ -13,7 +13,7 @@
             >Main</a
           >
         </li>
-        <li routerLinkActive="active" *ngIf="isAuthonticated">
+        <li routerLinkActive="active">
           <a
             routerLink="/boards"
             style="cursor: pointer"
@@ -25,17 +25,11 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown" appDropdown>
           <a style="cursor: pointer;" class="dropdown-toggle" role="button"
-            >Manage <span class="caret"></span
+            >Login/Register <span class="caret"></span
           ></a>
           <ul class="dropdown-menu">
             <li>
-              <a routerLinkActive="active" routerLink="/auth" style="cursor: pointer;" *ngIf="!isAuthonticated">Login</a>
-            </li>
-                        <li>
-              <a routerLinkActive="active" routerLink="/auth" style="cursor: pointer;" *ngIf="isAuthonticated">Logout</a>
-            </li>
-            <li>
-              <a style="cursor: pointer;" (click)="onFetchData()">Register</a>
+              <a routerLinkActive="active" routerLink="/auth" style="cursor: pointer;" >Login</a>
             </li>
           </ul>
         </li>

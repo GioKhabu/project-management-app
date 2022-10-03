@@ -10,17 +10,17 @@ import { BoardService } from '../boards.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   private userSub: Subscription
-  isAuthonticated = false
+  // isAuthonticated = false
   @Output() featureSelected = new EventEmitter<string>();
 
   constructor(private accountService: BoardService, private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.userSub = this.authService.user.subscribe(user => {
-    this.isAuthonticated = !!user
-    console.log(!user)
-    console.log(!!user)
-    });
+    // this.userSub = this.authService.user.subscribe(user => {
+    // this.isAuthonticated = !!user
+    // console.log(!user)
+    // console.log(!!user)
+    // });
   }
 
   onSelect(feature: string) {
