@@ -1,8 +1,9 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Board } from './board/board.model';
-import { HttpClient } from '@angular/common/http';
-import { map, tap, filter } from 'rxjs/operators';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { map, tap, filter, take, exhaustMap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { AuthService } from './auth/auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class BoardService {
@@ -31,7 +32,7 @@ export class BoardService {
     return this.boardId;
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   private _refreshNeeded$ = new Subject<void>();
 
@@ -66,17 +67,25 @@ export class BoardService {
   }
 
   fetchBoards() {
-    return this.http.get<{ [key: string]: Board }>(this.boardsHttp).pipe(
-      map((responseData) => {
-        const postArray: Board[] = [];
-        for (const key in responseData) {
-          if (responseData.hasOwnProperty(key)) {
-            postArray.push({ ...responseData[key], id: key });
+    return this.authService.user
+      .pipe(
+        take(1),
+        exhaustMap((user) => {
+          return this.http.get<{ [key: string]: Board }>(this.boardsHttp, {
+            params: new HttpParams().set('auth', user.token)
+          });
+        }),
+        map((responseData) => {
+          const postArray: Board[] = [];
+          for (const key in responseData) {
+            if (responseData.hasOwnProperty(key)) {
+              postArray.push({ ...responseData[key], id: key });
+            }
           }
-        }
-        return postArray;
-      })
-    );
+          return postArray;
+        })
+      )
+
   }
 
   fetchSingleBoard(key: string) {

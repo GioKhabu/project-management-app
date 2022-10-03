@@ -1,0 +1,19 @@
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  max-width: 99vw;
+}
+
+.auth-group {
+    margin-top: 50px;
+  max-width: 60vw;
+
+}
+
+.button-group {
+    display: flex;
+}
+button {
+    margin: 20px;
+}

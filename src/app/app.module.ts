@@ -30,11 +30,15 @@ import { TaskDeletePopUpComponent } from './board-item-page/tasks/task-delete-po
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { ScrollingModule} from '@angular/cdk/scrolling'
+import { DropdownDirective } from './shared/dropdown.directive';
+import { AuthComponent } from './auth/auth.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner-component';
 
 const appRoutes: Routes = [
   { path: '', component: MainComponent},
   { path: 'boards', component: BoardComponent},
-  {path: 'boards/boardsItem', component: BoardItemPageComponent}
+  {path: 'boards/boardsItem', component: BoardItemPageComponent},
+  {path: 'auth', component: AuthComponent}
 ]
 
 @NgModule({
@@ -58,6 +62,9 @@ const appRoutes: Routes = [
     AddNewTaskComponent,
     ColumnDeletePopUpComponent,
     TaskDeletePopUpComponent,
+    DropdownDirective,
+    AuthComponent,
+    LoadingSpinnerComponent
   ],
   entryComponents: [ColumnDeletePopUpComponent],
   imports: [
